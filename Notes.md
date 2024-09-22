@@ -1,0 +1,1 @@
+We are going to start with development of problem admin service, where the admin of the platform can perform CRUD operations on problems. This is going to be a relatively simple service with not so heavy business logic.

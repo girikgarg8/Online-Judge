@@ -1,0 +1,1 @@
+The main branch is the deployment branch and the master is the development branch.
