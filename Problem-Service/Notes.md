@@ -33,3 +33,11 @@ Example: Mongoose
 ### An important note ###
 
 Problem statements can have text, images, tables etc. Due to this, we’ll store the entire problem description including the text, images, hints, constraints etc. in the form of Markdown. And this markdown can be stored as a string in MongoDB/S3.
+
+## Sanitization of Incoming Markdown ###
+
+As we discussed that we'll be storing the problem description in the form of Markdown, there are some considerations while using it. Markdown can have HTML, and HTML in turn can have malicious scripts. Hence, we need to sanitize the incoming markdown from API request body.
+
+There's a library called `sanitize-html` which can be used to sanaitize HTML. However, the incoming data we have is in the form of Markdown. Hence, we'll leverage a library called `marked`, by which we'll first convert the Markdown into HTML. We can then sanitize the obtained output HTML.
+
+After getting the sanitized HTML, we can either choose to return the sanitized HTML or convert it into Markdown. As Markdown is an easier data format to work with (compared to HTML), we'll convert the sanitized HTML back to Markdown using `turn-down` .
