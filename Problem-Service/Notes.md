@@ -29,3 +29,7 @@ Q. What are ODMs?
 A. ODM stands for Object Document Mapping, it's similar to ORM, but with the difference that it's used for Document based NoSQL databases.
 
 Example: Mongoose
+
+### An important note ###
+
+Problem statements can have text, images, tables etc. Due to this, we’ll store the entire problem description including the text, images, hints, constraints etc. in the form of Markdown. And this markdown can be stored as a string in MongoDB/S3.
