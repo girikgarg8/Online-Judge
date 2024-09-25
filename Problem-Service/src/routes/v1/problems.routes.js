@@ -1,10 +1,10 @@
 const express = require("express");
-
+const { validateDocumentID } = require("../../validators");
 const { problemController } = require("../../controllers");
 
 const problemRouter = express.Router();
 
-problemRouter.get("/:id", problemController.getProblem);
+problemRouter.get("/:id", [validateDocumentID], problemController.getProblem);
 
 problemRouter.get("/", problemController.getProblems);
 

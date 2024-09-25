@@ -24,7 +24,23 @@ class ProblemService {
       const problems = await this.problemRepository.getAllProblems();
       return problems;
     } catch (error) {
-      console.error("Error while fetching all problems in service layer");
+      console.error(
+        "Error while fetching all problems in service layer",
+        error
+      );
+      throw error;
+    }
+  }
+
+  async getProblemByID(id) {
+    try {
+      const problem = await this.problemRepository.getProblemByID(id);
+      return problem;
+    } catch (error) {
+      console.error(
+        "Error while fetching problem by document id in service layer",
+        error
+      );
       throw error;
     }
   }

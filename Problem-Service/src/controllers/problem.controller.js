@@ -15,15 +15,22 @@ async function addProblem(req, res, next) {
       error: {},
     });
   } catch (error) {
+    console.error("Error while creating a problem in controller layer", error);
     next(error);
   }
 }
 
-function getProblem(req, res, next) {
+async function getProblem(req, res, next) {
   try {
-    // nothing implemented
-    throw new NotImplementedError("getProblem");
+    const problem = await problemService.getProblemByID(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched the problem",
+      data: problem,
+      error: {},
+    });
   } catch (error) {
+    console.error("Error while fetching problem in controller layer", error);
     next(error);
   }
 }
@@ -38,7 +45,10 @@ async function getProblems(req, res, next) {
       error: {},
     });
   } catch (error) {
-    console.error("Error while fetching all problems in controller layer");
+    console.error(
+      "Error while fetching all problems in controller layer",
+      error
+    );
     next(error);
   }
 }
