@@ -18,4 +18,4 @@ function sanitizeMarkdownContent(markdownContent) {
   return sanitizedMarkdown;
 }
 
-module.exports = sanitizeMarkdownContent;
+module.exports = { sanitizeMarkdownContent };

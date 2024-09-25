@@ -13,9 +13,18 @@ class ProblemRepository {
         editorial: editorial || "",
       });
       return problem;
-      
     } catch (error) {
       console.error("Error while creating problem in repository layer", error);
+      throw error;
+    }
+  }
+
+  async getAllProblems() {
+    try {
+      const problems = await Problem.find({});
+      return problems;
+    } catch (error) {
+      console.error("Error while fetching all problems in repository layer");
       throw error;
     }
   }
