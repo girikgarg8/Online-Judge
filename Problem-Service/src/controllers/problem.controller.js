@@ -1,29 +1,54 @@
 const { StatusCodes } = require("http-status-codes");
 const NotImplementedError = require("../errors/notImplemented.error");
+const { ProblemService } = require("../services");
+const { ProblemRepository } = require("../repositories");
 
-function addProblem(req, res, next) {
+const problemService = new ProblemService(new ProblemRepository());
+
+async function addProblem(req, res, next) {
   try {
-    // nothing implemented
-    throw new NotImplementedError("addProblem");
+    const problem = await problemService.createProblem(req.body);
+    return res.status(StatusCodes.CREATED).json({
+      success: true,
+      message: "Successfully created the problem",
+      data: problem,
+      error: {},
+    });
   } catch (error) {
+    console.error("Error while creating a problem in controller layer", error);
     next(error);
   }
 }
 
-function getProblem(req, res, next) {
+async function getProblem(req, res, next) {
   try {
-    // nothing implemented
-    throw new NotImplementedError("getProblem");
+    const problem = await problemService.getProblemByID(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched the problem",
+      data: problem,
+      error: {},
+    });
   } catch (error) {
+    console.error("Error while fetching problem in controller layer", error);
     next(error);
   }
 }
 
-function getProblems(req, res, next) {
+async function getProblems(req, res, next) {
   try {
-    // nothing implemented
-    throw new NotImplementedError("getProblems");
+    const problems = await problemService.getAllProblems();
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched all problems",
+      data: problems,
+      error: {},
+    });
   } catch (error) {
+    console.error(
+      "Error while fetching all problems in controller layer",
+      error
+    );
     next(error);
   }
 }

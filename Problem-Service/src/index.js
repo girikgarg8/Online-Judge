@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 
 const { PORT } = require("./config/server.config");
 const apiRouter = require("./routes");
-const errorHandler = require("./utils/errorHandler");
+const { errorHandler } = require("./utils");
+const connectToDB = require("./config/db.config");
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use("/api", apiRouter);
 
 app.use(errorHandler); // the last middleware, if the controller throws any error, this middleware will take care of structuring it in JSON response format
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server started at PORT: ${PORT}`);
+  await connectToDB();
+  console.log("Successfully connected to DB");
 });
