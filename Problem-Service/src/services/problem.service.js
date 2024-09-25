@@ -44,6 +44,16 @@ class ProblemService {
       throw error;
     }
   }
+
+  async deleteProblem(id) {
+    try {
+      const response = await this.problemRepository.deleteProblem(id);
+      return response;
+    } catch (error) {
+      console.error("Error while deleting the problem in service layer", error);
+      throw error;
+    }
+  }
 }
 
 module.exports = ProblemService;

@@ -48,6 +48,22 @@ class ProblemRepository {
       throw error;
     }
   }
+
+  async deleteProblem(id) {
+    try {
+      const response = await Problem.findByIdAndDelete(id);
+      if (!response) {
+        throw new NotFoundError("Problem", id);
+      }
+      return response;
+    } catch (error) {
+      console.error(
+        "Error while fetching deleting the problem in repository layer",
+        error
+      );
+      throw error;
+    }
+  }
 }
 
 module.exports = ProblemRepository;

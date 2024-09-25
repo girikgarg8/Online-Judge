@@ -53,11 +53,17 @@ async function getProblems(req, res, next) {
   }
 }
 
-function deleteProblem(req, res, next) {
+async function deleteProblem(req, res, next) {
   try {
-    // nothing implemented
-    throw new NotImplementedError("deleteProblem");
+    const response = await problemService.deleteProblem(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully deleted the problem",
+      data: response,
+      error: {},
+    });
   } catch (error) {
+    console.error("Error while deleting problem in controller layer", error);
     next(error);
   }
 }
