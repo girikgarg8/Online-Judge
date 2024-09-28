@@ -41,3 +41,31 @@ As we discussed that we'll be storing the problem description in the form of Mar
 There's a library called `sanitize-html` which can be used to sanaitize HTML. However, the incoming data we have is in the form of Markdown. Hence, we'll leverage a library called `marked`, by which we'll first convert the Markdown into HTML. We can then sanitize the obtained output HTML.
 
 After getting the sanitized HTML, we can either choose to return the sanitized HTML or convert it into Markdown. As Markdown is an easier data format to work with (compared to HTML), we'll convert the sanitized HTML back to Markdown using `turn-down` .
+
+**About Azure Cosmos DB and integration with our project**
+
+Azure Cosmos DB is a NoSQL DB.
+
+Until now, we have been using Winston to generate logs. Now we also want to store these logs in Cosmos DB.
+
+Why? For efficient searching/querying of logs in case of an incident/support ticket
+
+Azure Cosmos DB can store huge amounts of data, in the form of documents or key-value pairs. It has highly optimized queries.
+
+#### Comparing the terminologies from SQL/MongoDB with those used in Azure Cosmos
+
+1. Database -> Database
+
+2. Table -> Container
+
+3. Row/Document -> Document
+
+### Steps taken to integrate Cosmos DB with our project
+
+1. Writing a Cosmos Client which will connect to our database and also have functions to perform CRUD operations.
+
+2. Setting up Winstons logs to be added to Cosmos
+
+Attaching the screenshots from Azure Cosmos DB as it's free only for first 30 days, so access may not be available post that:
+
+![Error-logs-being-written-to-Cosmos-DB](./assets/CosmosDB_Data_Explorer_Screenshot.png)
