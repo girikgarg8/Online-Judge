@@ -1,3 +1,4 @@
+const { logger } = require("../config");
 const NotFoundError = require("../errors/notFound.error");
 const { Problem } = require("../models");
 
@@ -15,7 +16,7 @@ class ProblemRepository {
       });
       return problem;
     } catch (error) {
-      console.error("Error while creating problem in repository layer", error);
+      logger.error("Error while creating problem in repository layer", error);
       throw error;
     }
   }
@@ -25,7 +26,7 @@ class ProblemRepository {
       const problems = await Problem.find({});
       return problems;
     } catch (error) {
-      console.error(
+      logger.error(
         "Error while fetching all problems in repository layer",
         error
       );
@@ -41,7 +42,7 @@ class ProblemRepository {
       }
       return problem;
     } catch (error) {
-      console.error(
+      logger.error(
         "Error while fetching problem by ID in repository layer",
         error
       );
@@ -57,7 +58,7 @@ class ProblemRepository {
       }
       return response;
     } catch (error) {
-      console.error(
+      logger.error(
         "Error while deleting the problem in repository layer",
         error
       );
@@ -75,7 +76,7 @@ class ProblemRepository {
       }
       return response;
     } catch (error) {
-      console.error(
+      logger.error(
         "Error while updating the problem in repository layer",
         error
       );

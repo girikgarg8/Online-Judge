@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 
-const { ATLAS_DB_URL, NODE_ENV } = require("./server.config");
+const { PROBLEMS_ATLAS_DB_URL, NODE_ENV } = require("./server.config");
+const logger = require("./logger.config");
 
 async function connectToDB() {
   try {
     if (NODE_ENV === "development") {
-      await mongoose.connect(ATLAS_DB_URL);
+      await mongoose.connect(PROBLEMS_ATLAS_DB_URL);
     }
   } catch (error) {
-    console.error("Unable to connect to the DB server", error);
+    logger.error("Unable to connect to the DB server", error);
   }
 }
 
