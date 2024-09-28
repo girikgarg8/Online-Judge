@@ -16,6 +16,10 @@ problemRouter.delete(
   problemController.deleteProblem
 );
 
-problemRouter.put("/:id", problemController.updateProblem);
+problemRouter.patch(
+  "/:id",
+  [validateDocumentID],
+  problemController.updateProblem
+);
 
 module.exports = problemRouter;

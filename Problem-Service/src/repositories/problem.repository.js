@@ -58,7 +58,25 @@ class ProblemRepository {
       return response;
     } catch (error) {
       console.error(
-        "Error while fetching deleting the problem in repository layer",
+        "Error while deleting the problem in repository layer",
+        error
+      );
+      throw error;
+    }
+  }
+
+  async updateProblem(id, update) {
+    try {
+      const response = await Problem.findByIdAndUpdate(id, update, {
+        new: true,
+      });
+      if (!response) {
+        throw new NotFoundError("Problem", id);
+      }
+      return response;
+    } catch (error) {
+      console.error(
+        "Error while updating the problem in repository layer",
         error
       );
       throw error;

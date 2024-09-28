@@ -54,6 +54,21 @@ class ProblemService {
       throw error;
     }
   }
+
+  async updateProblem(id, update) {
+    try {
+      if (update.description) {
+        update.description = markDownSanitizer.sanitizeMarkdownContent(
+          update.description
+        );
+      }
+      const response = await this.problemRepository.updateProblem(id, update);
+      return response;
+    } catch (error) {
+      console.error("Error while updating the problem in service layer");
+      throw error;
+    }
+  }
 }
 
 module.exports = ProblemService;
