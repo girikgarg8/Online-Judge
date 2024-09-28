@@ -2,6 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 const NotImplementedError = require("../errors/notImplemented.error");
 const { ProblemService } = require("../services");
 const { ProblemRepository } = require("../repositories");
+const { logger } = require("../config");
 
 const problemService = new ProblemService(new ProblemRepository());
 
@@ -15,7 +16,7 @@ async function addProblem(req, res, next) {
       error: {},
     });
   } catch (error) {
-    console.error("Error while creating a problem in controller layer", error);
+    logger.error("Error while creating a problem in controller layer", error);
     next(error);
   }
 }
@@ -30,7 +31,7 @@ async function getProblem(req, res, next) {
       error: {},
     });
   } catch (error) {
-    console.error("Error while fetching problem in controller layer", error);
+    logger.error("Error while fetching problem in controller layer", error);
     next(error);
   }
 }
@@ -45,7 +46,7 @@ async function getProblems(req, res, next) {
       error: {},
     });
   } catch (error) {
-    console.error(
+    logger.error(
       "Error while fetching all problems in controller layer",
       error
     );
@@ -63,7 +64,7 @@ async function deleteProblem(req, res, next) {
       error: {},
     });
   } catch (error) {
-    console.error("Error while deleting problem in controller layer", error);
+    logger.error("Error while deleting problem in controller layer", error);
     next(error);
   }
 }
@@ -78,7 +79,7 @@ async function updateProblem(req, res, next) {
       error: {},
     })
   } catch (error) {
-    console.error("Error while updating problem in controller layer", error);
+    logger.error("Error while updating problem in controller layer", error);
     next(error);
   }
 }
